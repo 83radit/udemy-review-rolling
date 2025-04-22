@@ -2,6 +2,7 @@ pyinstaller --onefile Udemy_review_rolling.py
 
 pyinstaller Udemy_review_rolling.spec
 
+
 # Read this to learn how to compile with binary inside
 # https://jerrynsh.com/how-to-package-python-selenium-applications-with-pyinstaller/
 
@@ -38,3 +39,11 @@ python -m venv venv_clean
 
 Remove-Item -Path ("C:\Path\To\Directory1", "D:\Another\Path\Directory2", "\\Server\Share\Directory3") -Force -Recurse
 Remove-Item -Path ("build", "dist") -Force -Recurse
+
+
+# Create a requirements.txt file:
+# https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
+
+pip freeze > requirements.txt
+
+pip install -r requirements.txt
