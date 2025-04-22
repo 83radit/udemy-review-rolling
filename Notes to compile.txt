@@ -1,0 +1,40 @@
+pyinstaller --onefile Udemy_review_rolling.py
+
+pyinstaller Udemy_review_rolling.spec
+
+# Read this to learn how to compile with binary inside
+# https://jerrynsh.com/how-to-package-python-selenium-applications-with-pyinstaller/
+
+pyi-makespec main.py --onefile --noconsole --add-binary "driver\chromedriver.exe;driver\" --add-data "example.json;." --add-data "example.ini;." --name selenium-automation-exe
+
+pyi-makespec Udemy_review_rolling.py --onefile --noconsole --add-binary "driver\chromedriver.exe;driver\" --name udemy_review_rolling
+
+# You will need to add the following code at the end of your .spec file
+
+import shutil
+shutil.copyfile('example.ini', '{0}/example.ini'.format(DISTPATH))
+shutil.copyfile('example.json', '{0}/example.json'.format(DISTPATH))
+
+# Finally, we will create the executable file with the command below:
+
+pyinstaller --clean selenium-automation-exe.spec
+
+pyinstaller --clean udemy_review_rolling.spec
+
+
+# How to include webdriver in exe file
+# https://www.zacoding.com/en/post/python-selenium-to-exe/
+pyinstaller ./main.py --onefile --noconsole --add-binary "./driver/chromedriver.exe;./driver"
+
+
+🔁 Step 2: Create a Fresh Virtual Environment
+Do this in your project folder:
+
+powershell:
+
+python -m venv venv_clean
+.\venv_clean\Scripts\Activate.ps1
+(If you're on CMD, it's venv_clean\Scripts\activate.bat)
+
+Remove-Item -Path ("C:\Path\To\Directory1", "D:\Another\Path\Directory2", "\\Server\Share\Directory3") -Force -Recurse
+Remove-Item -Path ("build", "dist") -Force -Recurse
